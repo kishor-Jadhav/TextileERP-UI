@@ -1,0 +1,220 @@
+@use 'colors' as *;
+ .header-menue{
+    .p-menubar-root-list{
+        margin: 0px;
+    }
+    .p-menuitem-link{
+        text-decoration: none;
+    }
+    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content {    
+        font-size: 14px;       
+    }
+    .p-menubar .p-menubar-root-list .p-menuitem .p-menuitem-content .p-menuitem-link .p-menuitem-icon {        
+        display: none !important;
+    }
+ }
+.select-theme-blue{
+    .p-menubar{
+        padding: 0.5rem;
+        background: $theme-blue-yellow !important;
+        color: $theme-blue-menubar-color;
+        border: 1px solid $theme-blue-menubar-white;
+        border-radius: 3px;
+        .p-menubar-root-list {
+            .p-menuitem {
+                .p-menuitem-content{
+                    .p-menuitem-link{
+                        .p-menuitem-text{
+                            color: $theme-blue-p-menuitem-text-color;
+                        }
+                        .p-menuitem-icon {
+                            color: $theme-blue-p-menuitem-icon-color;
+                            margin-right: 0.5rem;
+                        }
+                        .p-submenu-icon {
+                            color: $theme-blue-submenu-icon-color;
+                            margin-left: 0.5rem;
+                        }
+                    }
+                }
+            }
+            .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {
+                color: $theme-blue-p-menuitem-content-hover-color;
+                background: $theme-blue-p-menuitem-content-hover-background;
+            }
+            .p-menuitem.p-highlight > .p-menuitem-content {
+                color: $theme-blue-p-menuitem-p-highlight-p-menuitem-content-color;
+                background: $theme-blue-p-menuitem-p-highlight-p-menuitem-content-background;
+            }
+        }  
+
+        .p-submenu-list {
+            padding: 0.25rem 0;
+            background: $theme-blue-p-submenu-list-background;
+            border: 0 none;
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+            width: 12.5rem;
+        }
+
+        
+    }
+}
+.select-theme-yellow{
+    .p-menubar{
+        padding: 0.5rem;
+        background: $theme-yellow-yellow !important;
+        color: $theme-yellow-menubar-color;
+        border: 1px solid $theme-yellow-menubar-white;
+        border-radius: 3px;
+        .p-menubar-root-list {
+            .p-menuitem {
+                .p-menuitem-content{
+                    .p-menuitem-link{
+                        .p-menuitem-text{
+                            color: $theme-yellow-p-menuitem-text-color;
+                        }
+                        .p-menuitem-icon {
+                            color: $theme-yellow-p-menuitem-icon-color;
+                            margin-right: 0.5rem;
+                        }
+                        .p-submenu-icon {
+                            color: $theme-yellow-submenu-icon-color;
+                            margin-left: 0.5rem;
+                        }
+                    }
+                }
+            }
+            .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {
+                color: $theme-yellow-p-menuitem-content-hover-color;
+                background: $theme-yellow-p-menuitem-content-hover-background;
+            }
+            .p-menuitem.p-highlight > .p-menuitem-content {
+                color: $theme-yellow-p-menuitem-p-highlight-p-menuitem-content-color;
+                background: $theme-yellow-p-menuitem-p-highlight-p-menuitem-content-background;
+            }
+        }  
+
+        .p-submenu-list {
+            padding: 0.25rem 0;
+            background: $theme-yellow-p-submenu-list-background;
+            border: 0 none;
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+            width: 12.5rem;
+        }
+
+        
+    }
+}
+.select-theme-red{
+    .p-menubar{
+        padding: 0.5rem;
+        background: $theme-red-red !important;
+        color: $theme-red-menubar-color;
+        border: 1px solid $theme-red-menubar-white;
+        border-radius: 3px;
+        .p-menubar-root-list {
+            .p-menuitem {
+                .p-menuitem-content{
+                    .p-menuitem-link{
+                        .p-menuitem-text{
+                            color: $theme-red-p-menuitem-text-color;
+                        }
+                        .p-menuitem-icon {
+                            color: $theme-red-p-menuitem-icon-color;
+                            margin-right: 0.5rem;
+                        }
+                        .p-submenu-icon {
+                            color: $theme-red-submenu-icon-color;
+                            margin-left: 0.5rem;
+                        }
+                    }
+                }
+            }
+            .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {
+                color: $theme-red-p-menuitem-content-hover-color;
+                background: $theme-red-p-menuitem-content-hover-background;
+            }
+            .p-menuitem.p-highlight > .p-menuitem-content {
+                color: $theme-red-p-menuitem-p-highlight-p-menuitem-content-color;
+                background: $theme-red-p-menuitem-p-highlight-p-menuitem-content-background;
+            }
+        }  
+
+        .p-submenu-list {
+            padding: 0.25rem 0;
+            background: $theme-red-p-submenu-list-background;
+            border: 0 none;
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+            width: 12.5rem;
+        }
+
+        
+    }
+}
+.select-theme-purple{
+    .p-menubar{
+        padding: 0.5rem;
+        background: $theme-purple-purple !important;
+        color: $theme-purple-menubar-color;
+        border: 1px solid $theme-purple-menubar-white;
+        border-radius: 3px;
+        @media screen and (max-width: 960px) {
+            .p-menubar-button {
+                display: flex;
+                width: 2rem;
+                height: 2rem;
+                color: #ffffff;
+                border-radius: 50%;
+                transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+            }
+        }
+        @media screen and (max-width: 960px) {
+            .p-menubar .p-menubar-button:focus {
+                outline: 0 none;
+                outline-offset: 0;
+                box-shadow: 0 0 0 0.2rem #f8f9f9;
+            }
+            .p-menubar-button:hover {
+                color: #ffffff;
+                background: #b30998;
+            }
+        }
+        .p-menubar-root-list {
+            .p-menuitem {
+                .p-menuitem-content{
+                    .p-menuitem-link{
+                        .p-menuitem-text{
+                            color: $theme-purple-p-menuitem-text-color;
+                        }
+                        .p-menuitem-icon {
+                            color: $theme-purple-p-menuitem-icon-color;
+                            margin-right: 0.5rem;
+                        }
+                        .p-submenu-icon {
+                            color: $theme-purple-submenu-icon-color;
+                            margin-left: 0.5rem;
+                        }
+                    }
+                }
+            }
+            .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {
+                color: $theme-purple-p-menuitem-content-hover-color;
+                background: $theme-purple-p-menuitem-content-hover-background;
+            }
+            .p-menuitem.p-highlight > .p-menuitem-content {
+                color: $theme-purple-p-menuitem-p-highlight-p-menuitem-content-color;
+                background: $theme-purple-p-menuitem-p-highlight-p-menuitem-content-background;
+            }
+        }  
+
+        .p-submenu-list {
+            padding: 0.25rem 0;
+            background: $theme-purple-p-submenu-list-background;
+            border: 0 none;
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+            width: 12.5rem;
+        }
+
+        
+    }
+}
