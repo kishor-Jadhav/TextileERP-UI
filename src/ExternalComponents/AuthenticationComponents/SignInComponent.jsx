@@ -44,7 +44,9 @@ const SignInComponent = ({ handleLoginSuccessEvent }) => {
         handleLoginSuccessEvent(true);
         dispatch(fetchUserList());
        //  const res =   getAdminUserList();
-        // const res2 = await  getUserList();
+      // test();
+      
+        
       } else {
         const msg = {
           msgType: errorType,
@@ -60,16 +62,19 @@ const SignInComponent = ({ handleLoginSuccessEvent }) => {
       console.log(userList);
     }
   }, [userList]);
-
+  const test = async () => {
+   const res2 = await  getUserList();
+  }
   const onSubmit = async (data) => {
     console.log("Login Successful:", data);
     const loginAuth = {
       email: data.email,
       password: data.password,
     };
-    //const res = await  signIn(loginAuth);
-   // dispatch(fetchLoginUserDetails(loginAuth));
-    handleLoginSuccessEvent(true);
+   // const res = await  signIn(loginAuth);
+  
+    dispatch(fetchLoginUserDetails(loginAuth));
+   // handleLoginSuccessEvent(true);
   };
 
   return (

@@ -1,0 +1,183 @@
+.form-container{
+    .form-section{
+        display: flex;
+        .form-field-group{
+            margin: 5px;
+            .form-lbl{
+                margin-right: 10px;
+                font-size: 14px;
+            }
+            .p-inputtext{
+                font-size: 12px;
+                height: 25px;
+            }
+            .p-inputtext.p-inputtext-sm{
+                padding: 0.231rem !important; 
+            }
+            .input-error {
+                border: 1px solid red !important;
+                box-shadow: 0 0 0.2rem red;
+              }
+            .disable-state{
+                background: #e9f1f1;
+            }  
+        }
+ 
+        .pln-card{
+            margin-top: 5px;
+            .p-panel-header{
+                padding: 6px;
+                font-size: 15px;
+                color: #269f30;
+            }
+        }
+         
+    }
+     .btn-action {
+        padding: 1px;
+        margin: 5px;
+        width: 85px;
+        font-size: 13px;
+    }
+}
+
+ 
+
+.p-panel-header{
+ .back-btn{
+        height: 15px;
+        width: 20px;
+    }
+}
+
+
+
+#header-action{
+    .action-header{
+        display: flex;
+        justify-content: space-between;
+        background: aliceblue;
+        margin-bottom: 10px;
+        padding: 5px;
+
+        .btn-action{
+            padding: 1px;
+            margin: 5px;
+            width: 85px;
+        }
+        .action{
+            font-weight: bold;
+            align-items: center;
+            display: flex;
+            .action-lbl{
+                color: #f97316;
+            }
+            .action-lbl-val{
+                font-weight: normal;
+                margin-left: 5px;
+                color: black;
+            }
+        }
+    }
+}
+
+.p-data-table{
+    .p-inputtext {
+        font-size: 12px;
+        height: 25px;
+    }
+    .edit-btn{
+    padding: 1px;   
+    padding-left: 4px;
+    padding-right: 4px;
+    font-weight: normal;
+    font-size: 12px;
+    background: #ed2424;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    width: 50px;
+    }
+    .even-row {
+        background-color: #f9f9f9; /* Light grey for even rows */
+    }
+      
+    .p-row-odd {
+        background-color: #f1f1f1; /* White for odd rows */
+    }
+    .p-datatable .p-datatable-thead > tr > th {
+        padding: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+    }
+    .p-datatable .p-datatable-tbody > tr > td{
+        font-size: 14px;
+        padding-left: 10px;
+        padding-top: 5px;
+        padding-bottom: 0px;
+        padding-bottom: 6px;
+    }
+    .p-filter-column{
+        .p-column-title{
+            font-size: 14px;
+        }
+        .p-sortable-column-icon{
+            width: 10px;
+            height: 10px;
+        }
+
+        .p-inputtext{
+            font-size: 12px;
+            height: 25px;
+        }
+
+        .p-inputtext:enabled:focus {
+            outline: 0 none;
+            outline-offset: 0;
+            box-shadow: 0 0 0 0.1rem #ccd9e3;
+            border-color: #b6bcc1;
+        }
+        .p-column-filter-menu-button{
+            width: 15px;
+            margin: 2px;
+        }
+        .p-column-filter-menu-button:focus-visible {
+            outline: 0 none;
+            outline-offset: 0;
+            box-shadow: 0 0 0 0.05rem #c2cad1;
+        }
+        .p-column-filter-menu-button:hover {
+            color: black;
+            border-color: transparent;
+            background: transparent;
+        }
+    }
+}
+
+.p-column-filter-overlay{
+    .p-column-filter-row-item{
+        padding: 5px;
+        font-size: 14px;
+    }
+    ul {
+        padding-left: 1rem;
+    }
+}
+
+
+.p-dropdown-panel{
+    ol, ul {
+        padding-left: 0rem;
+    }
+    .p-dropdown-item{
+        padding: 5px;
+        font-size: 14px;
+    }
+}
+
+// Component Level
+#firm-form{
+    .field-style{
+        width:154px;
+    }
+}

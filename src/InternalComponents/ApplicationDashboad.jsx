@@ -1,24 +1,24 @@
 import React,{useState} from "react";
 import HeaderMenue from "./HeaderMenueComponent";
-import { headerConfig } from "../Config/ApplicationConfig";
+import { Card } from 'primereact/card';
+import { getHeaderConfig } from "../Config/ApplicationConfig";
+import { Outlet,useNavigate } from "react-router-dom";
 
 const ApplicationDashboad = ({handleSignOutEvent})=>{
     const [searchTerm, setSearchTerm] = useState("");
-  
-   
+    const navigate = useNavigate();
+    const headerConfig = getHeaderConfig(navigate, setSearchTerm); // dynamic config
     const handleSignOut=()=>{
         handleSignOutEvent(false);
     }
     return(<>
      <HeaderMenue config={headerConfig}></HeaderMenue>
-     <h1> Dashboard Page</h1>
-     <button
-                  type="button"                  
-                  className="btn btn-primary btn-lg"                 
-                  onClick={handleSignOut}
-                >
-                 Login 
-                </button>
+     
+        <div className="m-3">
+        <Outlet /> 
+        </div>
+     
+       
         </>)
    
 }
