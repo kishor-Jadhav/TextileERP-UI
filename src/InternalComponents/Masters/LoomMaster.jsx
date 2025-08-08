@@ -12,6 +12,7 @@ import PanelHeaderWithBack from "../../SharedComponents/PanelHeaderWithBack";
 import CommonDataTable from "../../SharedComponents/CommonDatatable";
 import CustomFormActionContainer from "../CustomFormActionContainer";
 import { UNIT_ID } from "../../Constants/ApplicationConstants/ApplicationConstants";
+import { Paginator } from "primereact/paginator";
 
 const LoomMaster = () => {
   const initFormData = {
@@ -28,10 +29,22 @@ const LoomMaster = () => {
   const [action, setAction] = useState("view");
   const [dtAction, setDtAction] = useState("");
   const [loomData, setLoomData] = useState([]);
+
+  const [loomDataPagination, setLoomDataPagination] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [first, setFirst] = useState(0);
+  const [rows, setRows] = useState(10);
+
   const [addLoomData, setAddLoomData] = useState([]);
   const [selectedData, setSelectedData] = useState({});
   const [operation, setOperation] = useState();
   const [toastAction, setToastAction] = useState();
+
+  //Scroll on get
+  const [loading, setLoading] = useState(false);
+  const [scrollData, setScrollData] = useState([]);
+  const [totalRecords, setTotalRecords] = useState(0);
+  const pageSize = 5;
 
   const columns = [
     {
@@ -119,7 +132,9 @@ const LoomMaster = () => {
   });
 
   useEffect(() => {
-    getLoomMasterData();
+    getLoomMasterData();     
+    getLoomMasterDataPagination(0,10);
+    loadLazyData({first:0})
   }, [action]);
 
   const getLoomMasterData = () => {
@@ -131,6 +146,51 @@ const LoomMaster = () => {
       
     });
   };
+
+  const getLoomMasterDataPagination = ( page, size ) => {
+    LoomMasterService.getLoomMasterDataPagination(page, size).then((data) => {
+      const tableData = data?.content;
+      tableData?.forEach((item, index) => {
+        item.srNo = index + 1;
+      });
+      setLoomDataPagination(tableData || []);
+      setTotal(data.totalElements);
+    });
+  };
+
+   const onPageChange = (event) => {
+        setFirst(event.first);
+        setRows(event.rows);
+        const pageNo = event.first / event.rows;
+        const size= event.rows;
+        getLoomMasterDataPagination(pageNo,size);
+    };
+
+
+    // On scroll
+    const loadLazyData = (event) => {
+    setLoading(true);
+
+    const first = event.first || 0;    
+
+     LoomMasterService.getLoomMasterDataOnScroll(first, pageSize).then((data) => {
+      const tableData = data.content;
+      tableData?.forEach((item, index) => {
+        item.srNo = index + 1;
+        item.shiftId= item.shiftMaster.shiftId;
+        item.shiftName= item.shiftMaster.shiftName;
+      });
+       setScrollData((prev) =>
+      first === 0 ? tableData : [...prev, ...tableData]
+      );
+      setTotalRecords(data.totalElements);
+      setLoading(false);
+    });
+
+   
+  };
+  ///////////
+
 
   useEffect(() => {
   setupAddLoomData();
@@ -163,7 +223,7 @@ const LoomMaster = () => {
       setAddLoomData([]); 
     }
     if (action === "edit") {
-      setupAddLoomData();
+     // setupAddLoomData(); //For scroll
       const dtColumnsEditConfig =dtColumnsAdd;
       dtColumnsEditConfig.forEach((item)=>{
         if(item.field=="loomNo"){
@@ -288,7 +348,42 @@ const LoomMaster = () => {
      setAddLoomData(data);
      
 };
-
+const handleExportPDF=()=>{
+  LoomMasterService.exportLoomMasterData().then(blob => {
+    if (blob && blob instanceof Blob) {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'loom-master.pdf'; // Set desired file name
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url); // Clean up
+    } else {
+      console.error("Failed to export: ", blob?.error || "Unknown error");
+    }
+  }).catch(err => {
+    console.error("Download failed:", err);
+  });
+}
+const handleExport=()=>{
+  LoomMasterService.exportLoomMasterData().then(blob => {
+    if (blob && blob instanceof Blob) {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'loom-master.xlsx'; // Set desired file name
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url); // Clean up
+    } else {
+      console.error("Failed to export: ", blob?.error || "Unknown error");
+    }
+  }).catch(err => {
+    console.error("Download failed:", err);
+  });
+}
   return (
     <>
       <Panel
@@ -312,13 +407,33 @@ const LoomMaster = () => {
 
         {action === "view" && (
           <div>
+            <div>
+               <Button
+                      className="btn-action"
+                      label="Export Excel"
+                      onClick={handleExport}
+                      severity="danger"
+                      text
+                      type="button"
+                    />
+                 <Button
+                      className="btn-action"
+                      label="Export PDF"
+                      onClick={handleExportPDF}
+                      severity="danger"
+                      text
+                      type="button"
+                    />    
+            </div>
             <CommonDataTable
-              dataList={loomData}
+              dataList={loomDataPagination}
               columnConfig={dtColumns}
               action={action}
               actionClick={actionClick}
-              actionTableBtn={actionTableBtn}
+              actionTableBtn={actionTableBtn}             
+              dataTableType='server-pagination'             
             />
+             <Paginator first={first} rows={rows} totalRecords={total} rowsPerPageOptions={[5, 10, 20, 50]} onPageChange={onPageChange} />
           </div>
         )}
 
@@ -365,12 +480,16 @@ const LoomMaster = () => {
                   </div>
                   <div>
                     <CommonDataTable
-                      dataList={addLoomData}
+                      dataList={scrollData} // For scroll addLoomData
                       getOnCellEditComplete={onCellEditComplete}
                       columnConfig={dtColumnsAdd}
                       action={action}
                       actionClick={actionClick}
                       actionTableBtn={actionTableBtn}
+                      isScrollableRequired="true"
+                      lazy={true}
+                      loading={loading}                       
+                      onLazyLoad={loadLazyData}
                     />
                   </div>
                   <div>

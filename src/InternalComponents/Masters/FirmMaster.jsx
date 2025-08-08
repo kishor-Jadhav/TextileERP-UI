@@ -59,13 +59,15 @@ const FirmMaster = () => {
       isFilterApply: true,
       isSortApply: true,
     },
-    {
-      field: "",
+    { field: "",
       header: "Edit",
+      action: "edit",
       colType: "button",
       isVisible: true,
       classStyleName: "edit-btn",
       width: "50px",
+      isFilterApply: true,
+      isSortApply: true,
     },
   ];
 

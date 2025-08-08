@@ -13,7 +13,7 @@ import signIn, {
   getAdminUserList,
   getUserList,
 } from "../../Services/CommonService/CommonService";
-import { fetchLoginUserDetails, fetchUserList } from "../../redux/actions/UserDetailsAction";
+import { fetchLoginUserDetails, fetchUserList, fetchUserConfig } from "../../redux/actions/UserDetailsAction";
 const SignInComponent = ({ handleLoginSuccessEvent }) => {
   const dispatch = useDispatch();
   const { loading, loginUserDetails, error, userList } = useSelector(
@@ -43,6 +43,7 @@ const SignInComponent = ({ handleLoginSuccessEvent }) => {
         }
         handleLoginSuccessEvent(true);
         dispatch(fetchUserList());
+        dispatch(fetchUserConfig());
        //  const res =   getAdminUserList();
       // test();
       

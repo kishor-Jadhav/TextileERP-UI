@@ -103,6 +103,10 @@
       
     .p-row-odd {
         background-color: #f1f1f1; /* White for odd rows */
+       
+    }
+    .odd-row{    
+    background: aliceblue;    
     }
     .p-datatable .p-datatable-thead > tr > th {
         padding: 0px;
@@ -180,4 +184,12 @@
     .field-style{
         width:154px;
     }
+}
+
+#data-table{
+    .odd-row{
+        height: 35px;
+        background: aliceblue;
+        border: 1PX SOLID;
+        }
 }

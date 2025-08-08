@@ -11,8 +11,15 @@ import CityMaster from './InternalComponents/Masters/CityMaster';
 import FirmMaster from './InternalComponents/Masters/FirmMaster';
 import PartyMaster from './InternalComponents/Masters/PartyMaster';
 import LoomMaster from './InternalComponents/Masters/LoomMaster';
- 
-
+import CountMaster from './InternalComponents/Masters/CountMaster';
+import QualityMaster from './InternalComponents/Masters/QualityMaster';
+import DesignMaster from './InternalComponents/Masters/DesignMaster';
+import UserCreationForm    from './InternalComponents/UtilityMaster/UserCreationForm';
+import ApplicationMenuMaster   from './InternalComponents/UtilityMaster/ApplicationMenuMaster';
+import  ApplicationClientMaster   from './InternalComponents/UtilityMaster/ApplicationClientMaster';
+import  ApplicationClientProjectMaster    from './InternalComponents/UtilityMaster/ApplicationClientProjectMaster';
+import UserMenuAccessGroup from './InternalComponents/UtilityMaster/UserMenuAccessGroup';
+import UserAccessGroupForm from './InternalComponents/UtilityMaster/UserAccessGroupForm';
 function App() {
     
     const [isSignIn,setSignIn] = useState(false);
@@ -36,6 +43,15 @@ function App() {
                     <Route path="firmMaster" element={<FirmMaster />} />
                     <Route path="partyMaster" element={<PartyMaster />} />
                     <Route path="loomMaster" element={<LoomMaster />} />
+                    <Route path="countmaster" element={<CountMaster />} />
+                    <Route path="quality" element={<QualityMaster />} />
+                    <Route path="design" element={<DesignMaster />} />
+                    <Route path="createusers" element={<UserCreationForm />} />
+                    <Route path="applicationmenu" element={<ApplicationMenuMaster />} />
+                    <Route path="applicationclient" element={<ApplicationClientMaster />} />
+                    <Route path="applicationproject" element={<ApplicationClientProjectMaster />} />
+                    <Route path="usermenugroup" element={<UserMenuAccessGroup />} />
+                    <Route path="useraccessgroup" element={<UserAccessGroupForm />} />
                     </Route>
                 </Routes>
                </Router>

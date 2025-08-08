@@ -29,7 +29,16 @@ const CityMaster = () => {
     { field: 'cityName', header: 'CityName', colType: 'text', isVisible: true, width:"100px", isFilterApply:true, isSortApply: true },
     { field: 'state', header: 'State', colType: 'text', isVisible: true,  width:"100px", isFilterApply:true, isSortApply: true  },
     { field: 'pinCode', header: 'pinCode', colType: 'text', isVisible: false,  width:"100px", isFilterApply:true, isSortApply: true },
-    { field: '', header: 'Edit', colType: 'button', isVisible: true, classStyleName: 'edit-btn', width:"50px", isFilterApply:true, isSortApply: true  },
+	{ field: "",
+      header: "Edit",
+      action: "edit",
+      colType: "button",
+      isVisible: true,
+      classStyleName: "edit-btn",
+      width: "50px",
+      isFilterApply: true,
+      isSortApply: true,
+    },
   ];
 
   const [dtColumns, setDtColumns] = useState(columns);
