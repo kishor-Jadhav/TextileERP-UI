@@ -83,7 +83,7 @@ const ApplicationClientProjectMaster = () => {
 
   useEffect(() => {
     if (action == "view") {
-        utilityService.getClientMaster().then((data) => setdrclientNameData(data));
+       // utilityService.getClientMaster().then((data) => setdrclientNameData(data));
         utilityService.getClientProjectMaster().then((data) => setFormData(data));
     }
   }, [action]);
@@ -133,8 +133,8 @@ const ApplicationClientProjectMaster = () => {
    const onSubmit = async (data) => {
       console.log("save Successful:", data);
       const payload = data;
-      const clentdata = drclientNameData.find((q) => q.clientName === data.clientName); // match selected quality
-      payload.appClientMaster = clentdata;
+      //const clentdata = drclientNameData.find((q) => q.clientName === data.clientName); // match selected quality
+      //payload.appClientMaster = clentdata;
       if (action === 'add') {
         await utilityService.saveClientProjectMaster(data);
         setToastAction('save');

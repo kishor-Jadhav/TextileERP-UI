@@ -822,7 +822,7 @@ export const utilityService = {
     async getUserMasterApi() {
 
         try {
-            const response = await axiosInstance.get(ERP_APIS.getregisteruserlist);
+            const response = await axiosInstance.get(ERP_APIS.getnewuserlist);
             if (response) {
 
                 return response.data;

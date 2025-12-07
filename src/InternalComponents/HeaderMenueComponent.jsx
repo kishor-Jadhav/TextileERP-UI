@@ -1,18 +1,24 @@
-import React,{useRef} from 'react';
+import React,{useEffect, useRef, useState} from 'react';
 import { Menubar } from 'primereact/menubar';
 import { InputText } from 'primereact/inputtext';
 import { Badge } from 'primereact/badge';
 import { Button } from 'primereact/button';
 import { Avatar } from 'primereact/avatar';  
 import { OverlayPanel } from 'primereact/overlaypanel';
-
+import { useSelector, useDispatch } from "react-redux";
 import './../CommonCss/_headerMenueStyle.scss';
 
 const HeaderMenue = ({ config }) => {
   const { title, leftLogo, menuItems ,rightSearchBox,endButtons,profileMenu  } = config;
   const op = useRef(null);
-   
-
+   const { userConfigData } = useSelector(
+           (store) => store.userDetails
+       );
+  const [userProfileName, setUserProfileName] = useState("");
+  useEffect(()=>{
+  const userName = userConfigData?.userName;
+   setUserProfileName(userName)
+  },[userConfigData])
   const start = (
   <>
   {title.visible && leftLogo.visible && (
@@ -75,12 +81,17 @@ const HeaderMenue = ({ config }) => {
       
       )}
       
-        {profileMenu.visible && <><Avatar
+        {profileMenu.visible && 
+        <>
+        <div className='user-info-block'>
+        <div className='user-info-block -user-info-name'>Welcome - {userProfileName}</div>
+        <Avatar
           image="https://primefaces.org/cdn/primereact/images/avatar/amyelsner.png"
           shape="circle"
           onClick={(e) => op.current.toggle(e)}
           style={{ cursor: 'pointer' }}
         /> 
+        </div>
           <OverlayPanel ref={op} dismissable>
           <ul className="p-0 m-0" style={{ listStyleType: 'none' }}>
             {profileMenu.items.map((item, index) => (

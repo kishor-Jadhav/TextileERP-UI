@@ -185,6 +185,12 @@ const ApplicationMenuMaster = () => {
       setAction('view');
     }
     if (action === 'edit') {
+		 console.log(selectedParentMenu);
+      if(Object.keys(selectedParentMenu).length){
+        payload.parentMenuId = selectedParentMenu?.menuId;
+      } else {
+        payload.parentMenuId = 0;
+      }
       await utilityService.updateMenuMaster(payload);
       setToastAction('save');
       setAction('view');

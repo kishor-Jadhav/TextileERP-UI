@@ -1,38 +1,25 @@
  // ApplicationConfig.js
 function buildMenuItems(data, navigate) {
     // Helper to get icon by menu name (customize as needed)
-    const getIcon = (name) => {
-        const icons = {
-            "Master": "pi pi-fw pi-file",
-            "General": "pi pi-fw pi-plus",
-            "ERP Master": "pi pi-fw pi-external-link",
-            "Transaction": "pi pi-fw pi-pencil",
-            "Reports": "pi pi-fw pi-question",
-            "Utility": "pi pi-fw pi-question",
-            "City Master": "pi pi-fw pi-repeat",
-            "Firm Master": "pi pi-fw pi-undo",
-            "Party Master": "pi pi-fw pi-repeat",
-            "Loom Master": "pi pi-fw pi-undo",
-            "Count Master": "pi pi-fw pi-undo",
-            "Quality Master": "pi pi-fw pi-repeat",
-            "Design Master": "pi pi-fw pi-repeat",
-            "Client Master": "pi pi-fw pi-repeat",
-            "Project Master": "pi pi-fw pi-repeat",
-            "User Creation": "pi pi-fw pi-repeat",
-            "Menu Master": "pi pi-fw pi-repeat",
-            "User Menu Access Group": "pi pi-fw pi-repeat",
-            "User Access Group": "pi pi-fw pi-repeat",
-        };
-        return icons[name] || "pi pi-fw pi-file";
+    
+const getIcon = (Id) => {
+       let isParent = false;
+       for (let i = 0; i < data.length; i++) {
+           if (data[i].parentMenuId === Id && data[i].menuLevel > 0) {
+               isParent = true;
+               break;
+           }
+       }
+        return (isParent == true) ? "pi pi-fw pi-folder" : "";
     };
-
     // Build a map of menuId to menu item
     const menuMap = {};
     data.forEach(item => {
-        const m = item.userMenuMaster;
+        const m = item;
         menuMap[m.menuId] = {
             label: m.menuName,
-            icon: getIcon(m.menuName),
+            icon: getIcon(m.menuId),
+            class:"p-class-test",
             ...(m.menuRoute ? { command: () => navigate(m.menuRoute) } : {}),
             items: []
         };
@@ -40,7 +27,7 @@ function buildMenuItems(data, navigate) {
 
     // Build tree structure
     data.forEach(item => {
-        const m = item.userMenuMaster;
+        const m = item;
         if (m.menuLevel > 0 && menuMap[m.parentMenuId]) {
             menuMap[m.parentMenuId].items.push(menuMap[m.menuId]);
         }
@@ -51,7 +38,7 @@ function buildMenuItems(data, navigate) {
         // Find the menuId for this menu object
         const menuId = Object.keys(menuMap).find(key => menuMap[key] === m);
         // Find the corresponding data item with menuLevel 0
-        return data.some(d => d.userMenuMaster.menuId == menuId && d.userMenuMaster.menuLevel === 0);
+        return data.some(d => d.menuId == menuId && d.menuLevel === 0);
     });
     // If you want specific order or grouping, sort or group as needed here
     return menuItems;

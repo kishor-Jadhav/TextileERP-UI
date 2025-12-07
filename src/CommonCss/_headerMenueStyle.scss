@@ -12,6 +12,13 @@
     .p-menubar .p-menubar-root-list .p-menuitem .p-menuitem-content .p-menuitem-link .p-menuitem-icon {        
         display: none !important;
     }
+    .user-info-block{
+        display: flex;
+        .-user-info-name{
+                margin-right: 20px;
+                margin-top: 2px;
+        }
+    }
  }
 .select-theme-blue{
     .p-menubar{

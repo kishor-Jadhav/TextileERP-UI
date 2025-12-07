@@ -16,6 +16,7 @@ const UserCreationForm = () => {
   const initFormData = {
     userId: "",
     userName: "",
+    userRole:"",
     authUserName: "",
     password: "",
     email: "",
@@ -26,7 +27,7 @@ const UserCreationForm = () => {
     appClientProjectId: "",
     enabled: "",
     isDactive: "",
-    userRole: "",
+    
   };
   const userLanguage = [{ language: "en" }, { language: "mr" }]
   const userRoll = [{ userRole: "ROLE_USER" }, { userRole: "ROLE_ADMIN" },{ userRole: "ROLE_SUPERADMIN" }]
@@ -73,6 +74,16 @@ const UserCreationForm = () => {
       isSortApply: true,
     },
 
+     {
+      field: "userRole",
+      header: "Role",
+      colType: "text",
+      isVisible: true,
+      width: "100px",
+      isFilterApply: true,
+      isSortApply: true,
+    },
+
     {
       field: "",
       header: "Edit",
@@ -103,7 +114,17 @@ const UserCreationForm = () => {
     if (action == "view") {
       utilityService.getClientMaster().then((data) => setdrclientNameData(data));
       utilityService.getClientProjectMaster().then((data) => setdrclientProjData(data));
-      utilityService.getUserMaster().then((data) => setFormData(data));
+      utilityService.getUserMaster().then((data) =>{       
+        data?.forEach((item)=>{
+          if(item.userRoles.length){
+            const userRole = item.userRoles[0].roleName;
+           item.userRole =userRole.split("_")[1];
+          }
+        
+        })
+       
+       setFormData(data);
+      });
     }
   }, [action]);
 
@@ -253,8 +274,10 @@ const UserCreationForm = () => {
                           value={selectedFormControll?.userRole}
                           onChange={(e) => {
                             field.onChange(e.value.userRole); // set cityName in form
-                           
-                            setSelectedFormControll(e.value); // set full city object for later
+                            setSelectedFormControll((data) => {
+                              return {...data,userRole: e.value.userRole};
+                          })
+                            //setSelectedFormControll(e.value); // set full city object for later
                             console.log(selectedFormControll)
                           }}
                           options={drUserRoll}
@@ -383,7 +406,10 @@ const UserCreationForm = () => {
                           value={selectedFormControll?.language}
                           onChange={(e) => {
                             field.onChange(e.value.language); // set cityName in form
-                            setSelectedFormControll(e.value); // set full city object for later
+                             setSelectedFormControll((data) => {
+                              return {...data,language : e.value.language};
+                          })
+                            
                           }}
                           options={drUserLanguage}
                           optionLabel="language"

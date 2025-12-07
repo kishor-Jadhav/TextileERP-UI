@@ -31,6 +31,10 @@ const ApplicationDashboad = ({ handleSignOutEvent }) => {
 });
     const navigate = useNavigate();
     
+   // const [headerConfigState, setHeaderConfigState] = useState(
+    //getHeaderConfig1(navigate, setSearchTerm));
+    
+    
     const dispatch = useDispatch();
     const { loading, loginUserDetails, error, userConfigData } = useSelector(
         (store) => store.userDetails
@@ -44,7 +48,7 @@ const ApplicationDashboad = ({ handleSignOutEvent }) => {
          if(userConfigData?.userMenuGroupDetailMaster){
             if(menuBarDetails.length == 0){
                 const menuItems = userConfigData?.userMenuGroupDetailMaster || [];
-                setMenuBarDetails(menuItems);
+                setMenuBarDetails([...menuItems]);
                 const headerConfig = getHeaderConfig(navigate,userConfigData?.userMenuGroupDetailMaster, setSearchTerm);
                 setHeaderConfigState(headerConfig); 
             }
@@ -62,8 +66,8 @@ const ApplicationDashboad = ({ handleSignOutEvent }) => {
         }
     }, []); // Only run once on mount
     return (<>
-    <HeaderMenue config={headerConfigState}></HeaderMenue>
-        {(menuBarDetails.lenght>0) && (
+        
+        {(headerConfigState?.menuItems?.length > 0) && (
             <HeaderMenue config={headerConfigState}></HeaderMenue>)
             }
 

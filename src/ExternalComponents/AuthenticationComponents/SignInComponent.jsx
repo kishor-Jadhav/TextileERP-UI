@@ -42,10 +42,7 @@ const SignInComponent = ({ handleLoginSuccessEvent }) => {
           toastRef.current.show(msg);
         }
         handleLoginSuccessEvent(true);
-        dispatch(fetchUserList());
-        dispatch(fetchUserConfig());
-       //  const res =   getAdminUserList();
-      // test();
+        
       
         
       } else {
